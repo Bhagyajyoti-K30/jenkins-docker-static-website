@@ -11,13 +11,6 @@ This project demonstrates an automated workflow to deploy a static website using
 - Nginx  
 - Bash scripting  
 
-## Features
-- Continuous integration and deployment triggered by GitHub webhooks on code push.
-- Docker containerization of the static website.
-- Automated Jenkins pipeline to build, tag, and run Docker images.
-- Website served via Nginx inside Docker container.
-- Post-build notifications for deployment status.
-
 ## Steps Implemented
 Step 1: Prepare the Static Website. Create a simple static website using HTML, CSS, and JavaScript. Store all website files in a GitHub repository for version control.
 
