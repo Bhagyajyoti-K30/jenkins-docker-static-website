@@ -1,26 +1,15 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/<your-username>/<repo-name>.git'
+                git 'https://github.com/username/automated-static-website-deployment.git'
             }
         }
-        stage('Build Docker Image') {
+        stage('Build & Deploy') {
             steps {
-                sh './deploy.sh'
+                sh 'bash deploy.sh'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Deployment successful!'
-            // Add Slack/email notification steps here if configured
-        }
-        failure {
-            echo 'Deployment failed!'
         }
     }
 }
