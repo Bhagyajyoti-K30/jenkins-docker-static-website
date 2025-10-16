@@ -1,23 +1,15 @@
 #!/bin/bash
+IMAGE_NAME=static-website:latest
+CONTAINER_NAME=website-container
 
-# Variables
-IMAGE_NAME="static-website"
-CONTAINER_NAME="static-website-container"
+# Stop and remove existing container
+docker stop $CONTAINER_NAME 2>/dev/null
+docker rm $CONTAINER_NAME 2>/dev/null
 
 # Build Docker image
 docker build -t $IMAGE_NAME .
 
-# Stop and remove existing container if running
-if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
-    docker stop $CONTAINER_NAME
-    docker rm $CONTAINER_NAME
-fi
+# Run Docker container
+docker run -d -p 80:80 --name $CONTAINER_NAME $IMAGE_NAME
 
-# Run new container
-docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME
-
-echo "Deployment successful! Website running on port 80."
-
-
-#Make sure to make this script executable:
-chmod +x deploy.sh
+echo "Deployment completed successfully!"
